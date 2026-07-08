@@ -57,7 +57,7 @@ Precision and recall trade off in opposite directions across the two classes, wh
 
 ## Discussion
 
-Text classification for early screening is an increasingly active area, and dementia in particular is known to leave a detectable trace in written language: word frequency and vocabulary shift with disease progression, tracking the deterioration of the semantic memory system (Huff, Corkin, & Growdon, 1986). This lexical impoverishment tends to carry through to syntax too, producing shorter and more fragmented sentences. TF-IDF is sensitive to this, since low-frequency words show up more often in the reference corpus than in patients' text — but it does so at the cost of a very high-dimensional, largely uninterpretable feature space.
+Text classification for early screening is an increasingly active area, and dementia in particular is known to leave a detectable trace in written language: word frequency and vocabulary shift with disease progression, tracking the deterioration of the semantic memory system (Huff, Corkin, & Growdon, 1986). This lexical impoverishment tends to carry through to syntax too, producing shorter and more fragmented sentences. TF-IDF is sensitive to this, since low-frequency words show up more often in the reference corpus than in patients' text , but it does so at the cost of a very high-dimensional, largely uninterpretable feature space.
 
 MATTR targets the same underlying phenomenon (vocabulary richness) with a single, length-independent number. VADER adds an orthogonal signal: dementia patients also show measurable changes in emotional expression (Chaudhary, Zhornitsky, Chao, van Dyck, & Li, 2022). Combining the two seemed like a reasonable, clinically-motivated way to compress the text-classification problem down to a handful of interpretable numbers.
 
@@ -65,14 +65,14 @@ The result: F1-macro landed just above chance for a two-class problem, and varyi
 
 A few things are worth flagging as next steps rather than as reasons to discard the approach:
 
-- **Feature set is compact but not necessarily sufficient.** MATTR and VADER are theoretically grounded but may need to be paired with additional signal — TF-IDF itself, other lexical diversity indices (Brunet's Index, Honoré's Statistic), topic coherence via LSA, or embeddings (GloVe, or contextual embeddings from transformer models).
+- **Feature set is compact but not necessarily sufficient.** MATTR and VADER are theoretically grounded but may need to be paired with additional signal, TF-IDF itself, other lexical diversity indices (Brunet's Index, Honoré's Statistic), topic coherence via LSA, or embeddings (GloVe, or contextual embeddings from transformer models).
 - **A richer emotional model could help.** VADER's four scores are a coarse summary; a framework like EmoAtlas, built on Plutchik's emotion model, offers a more structured and psychologically grounded alternative (Semeraro et al., 2025).
 - **Non-linear classifiers become worth testing once the feature set grows.** A linear boundary is a reasonable starting point for 5 features, but is unlikely to capture non-linear interactions if the feature set expands.
 - **Author overlap between train and test folds is a real risk with this corpus.** If the same author appears in both the training and test splits, cross-validation folds can leak identity-specific writing style rather than testing generalization to unseen individuals. Grouped cross-validation (splitting by author, not by post) is the correct fix and should be treated as a prerequisite for trusting any accuracy number from this corpus, including the one reported here.
 
 ## Conclusion
 
-Lexical diversity and sentiment are a reasonable, clinically-motivated basis for compressing a text classification problem down to a handful of interpretable features, and doing so revealed a clear result: on their own, without author-level cross-validation controls, they land close to chance for this task. That's a useful finding in itself — it rules out a hypothesis cleanly rather than leaving it ambiguous, and it points to where the actual signal likely lives (higher-dimensional lexical features, richer emotion models, or non-linear interactions between them).
+Lexical diversity and sentiment are a reasonable, clinically-motivated basis for compressing a text classification problem down to a handful of interpretable features, and doing so revealed a clear result: on their own, without author-level cross-validation controls, they land close to chance for this task. That's a useful finding in itself, it rules out a hypothesis cleanly rather than leaving it ambiguous, and it points to where the actual signal likely lives (higher-dimensional lexical features, richer emotion models, or non-linear interactions between them).
 
 ## References
 
