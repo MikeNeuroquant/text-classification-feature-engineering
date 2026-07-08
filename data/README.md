@@ -18,7 +18,3 @@ post text goes here
 </doc>
 ```
 
-## Note on data.csv / the .gitignore
-
-`data/raw/` is excluded via `.gitignore` so raw corpus files never get committed by
-accident, even if you place a real copy there locally.
