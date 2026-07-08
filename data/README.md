@@ -4,16 +4,7 @@ This project uses the blog corpus from Masrani, Murray, Field & Carenini (2017),
 "Detecting dementia through retrospective analysis of routine blog posts by bloggers
 with dementia" (BioNLP Workshop 2017).
 
-## Why the raw data isn't included in this repository
-
-The corpus consists of real, identifiable blog posts written by individuals with
-Alzheimer's disease and their family members. Even where a dataset has been used in
-prior published research, redistributing real patient-authored health text isn't
-something to do by default — so it's deliberately left out of this repository.
-
-To run the notebook, obtain the corpus directly from the original authors or their
-published release, and place the two class files here as:
-
+Data are available at the original source: https://github.com/ml-for-nlp/SVMs
 ```
 data/raw/class1.txt   # Alzheimer's / dementia blogger posts
 data/raw/class2.txt   # control (family member) posts
